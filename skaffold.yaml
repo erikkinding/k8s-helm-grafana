@@ -1,0 +1,29 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: prom
+build:
+  artifacts:
+    - image: prom
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  helm:
+    releases:
+      - name: prometheus
+        repo: https://prometheus-community.github.io/helm-charts
+        remoteChart: prometheus
+        setValueTemplates:
+          server.service.type: NodePort
+
+      - name: grafana
+        repo: https://grafana.github.io/helm-charts
+        remoteChart: grafana
+        setValueTemplates:
+          service.type: NodePort
+          
+      - name: prom
+        chartPath: helm-chart
+        valuesFiles:
+          - ./helm-chart/values.yaml
+        version: 0.1.0

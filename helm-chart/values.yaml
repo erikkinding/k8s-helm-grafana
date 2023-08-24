@@ -1,0 +1,5 @@
+image: prom
+replicas: 1
+env: {}
+serviceAccount:
+  name: default
