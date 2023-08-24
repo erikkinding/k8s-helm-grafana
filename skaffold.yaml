@@ -10,6 +10,12 @@ build:
 deploy:
   helm:
     releases:
+      - name: prom
+        chartPath: helm-chart
+        valuesFiles:
+          - ./helm-chart/values.yaml
+        version: 0.1.0
+
       - name: prometheus
         repo: https://prometheus-community.github.io/helm-charts
         remoteChart: prometheus
@@ -26,8 +32,3 @@ deploy:
           service.type: NodePort
           service.nodePort: 30002
           
-      - name: prom
-        chartPath: helm-chart
-        valuesFiles:
-          - ./helm-chart/values.yaml
-        version: 0.1.0
