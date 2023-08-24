@@ -15,12 +15,16 @@ deploy:
         remoteChart: prometheus
         setValueTemplates:
           server.service.type: NodePort
+          server.service.nodePort: 30001
 
       - name: grafana
         repo: https://grafana.github.io/helm-charts
         remoteChart: grafana
         setValueTemplates:
+          adminUser: admin
+          adminPassword: hunter2
           service.type: NodePort
+          service.nodePort: 30002
           
       - name: prom
         chartPath: helm-chart

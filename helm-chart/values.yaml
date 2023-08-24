@@ -3,3 +3,6 @@ replicas: 1
 env: {}
 serviceAccount:
   name: default
+service:
+  nodePort:
+    30003
